@@ -1,11 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Wbpack Exercise</title>
-</head>
-<body>
-    <h1>Hello webpack!</h1>
-</body>
+    <script
+      src="https://kit.fontawesome.com/3ec9f83423.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="all">
+      <form id="form" class="form">
+        <div class="title">
+          <h4>Today's To Do</h4>
+          <i class="fa-solid fa-rotate"></i>
+        </div>
+        <div class="form-input">
+          <input
+            type="text"
+            id="list-input"
+            placeholder="Add to your list..."
+            required
+          />
+          <button class="btn">Enter</button>
+        </div>
+      </form>
+      <section>
+        <div class="do-list">
+          <!-- <li class="item">
+            <div class="btn-check">
+            <i class="fa-regular fa-square"></i>
+            </div>
+            <p>${task.description}</p>
+            <div class="task-dots">
+              <i class="fa-solid fa-ellipsis-vertical"></i>
+            </div>
+          </li> -->
+        </div>
+        <button class="clear">Clear all completed</button>
+      </section>
+    </div>
+  </body>
 </html>
