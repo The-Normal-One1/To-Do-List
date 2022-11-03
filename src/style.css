@@ -6,7 +6,7 @@ body {
 .all {
   display: flex;
   flex-direction: column;
-  margin: 90px 30px 0;
+  margin: 90px 120px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: 4px 4px rgba(0, 0, 0, 0.2);
 }
@@ -42,6 +42,7 @@ input {
 .btn {
   height: 60px;
   width: 10%;
+  border: none;
 }
 
 .item {
