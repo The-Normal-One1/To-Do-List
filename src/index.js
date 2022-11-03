@@ -1,59 +1,137 @@
 // import _ from 'lodash';
 
+import form from './modules/do';
+import { todoInput } from './modules/do';
+import { doList } from './modules/do';
+
 // eslint-disable-line
 
 import './style.css';
 
-const dolist = [
-  {
-    index: 0,
-    description: 'Doing some exercise',
-    completed: true,
-  },
-  {
-    index: 1,
-    description: 'Meeting with family',
-    completed: true,
-  },
-  {
-    index: 2,
-    description: 'Watching football games',
-    completed: true,
-  },
-  {
-    index: 3,
-    description: 'Study',
-    completed: true,
-  },
-];
 
-const taskInput = document.querySelector('.do-list');
+// Vars
+let todos = JSON.parse(localStorage.getItem('todos')) || [];
+let editTodoId = -1;
 
-const lists = () => {
-  const list = dolist.map((items) => `<div class="item">
-        <div class="btn-check">
-        <i class="fa-regular fa-square"></i>
-        </div>
-        <p>${items.description}</p>
-        <div class="task-dots">
-        <i class="fa-solid fa-ellipsis-vertical"></i>
-        <i class="fa-solid fa-trash"></i>
-        </div>
-    </div>`).join('');
+// Form submit
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-  taskInput.insertAdjacentHTML('afterend', list);
-};
+    saveTodo();
+    renderTodos();
+    localStorage.setItem('todos', JSON.stringify(todos));
+});
 
-window.document.addEventListener('DOMContentLoaded', lists);
+// Save todo
 
-// function component() {
-//     const element = document.createElement('div');
+const saveTodo = () => {
+    const todoValue = todoInput.value;
 
-//     // Lodash, now imported by this script
-//     element.innerHTML = _.join(['Hello', 'Ermiyas'], ' ');
-//     element.classList.add('hello');
+    // check if the todolist is empty
+    const isEmpty = todoValue === '';
 
-//     return element;
-// }
+    // check for duplication
+    const isDuplicate = todos.some((todo) => todo.description.toUpperCase() === todoValue.toUpperCase())
 
-// document.body.appendChild(component());
+    if (isEmpty) {
+        alert("To do list is empty");
+    } else if (isDuplicate) {
+        alert('Todo already exists!');
+    } else {
+        if (editTodoId >= 0) {
+            // update the edit todo
+            todos = todos.map((todo, index) => ({
+                    ...todo,
+                description: index ===  editTodoId ? todoValue : todo.description
+            }));
+
+            editTodoId = -1;
+        } else {
+            todos.push({
+                indexNum: '@'+ Math.floor(Math.random() * todos.length),
+                description: todoValue,
+                completed: false,
+            });
+        }
+        todoInput.value = '';
+    };
+}
+
+
+// render todos
+
+const renderTodos = () => {
+if (todos.length === 0) {
+    doList.innerHTML =`<center>Nothing To Do!</center>`
+    return
+}
+
+    // clear element before re render
+    doList.innerHTML = '';
+
+    todos.forEach((todo, index) => {
+        doList.innerHTML += `
+        <div class="item" id=${index}>
+                <i class="fa-regular ${todo.completed ? 'fa-square-check' : 'fa-square'}"
+                data-action='check'
+                ></i>
+                <p data-action='edit'>${todo.description}</p>
+                <i class="fa-solid fa-trash" data-action='delete'>                <i class="fa-solid fa-ellipsis-vertical" data-action='move'></i>
+                </i>
+        </div>`;
+    })
+}
+
+// first render
+
+renderTodos();
+
+
+// add eventlisner for all the do lists
+
+doList.addEventListener('click', (e) => {
+    const target = e.target;
+    const parentEle = target.parentNode;
+
+    if (parentEle.className !== 'item') return;
+
+    const item = parentEle;
+    const itemId = Number(item.id);
+
+    const action = target.dataset.action;
+
+    action === 'check' && checkTodo(itemId);
+    action === 'edit' && editTodo(itemId);
+    // action === 'move' && moveTodo(itemId);
+    action === 'delete' && deleteTodo(itemId);
+});
+
+// check for todo
+
+const checkTodo = (itemId) => {
+    todos = todos.map((todo, index) => ({
+        ...todo,
+        completed: index === itemId? !todo.completed : todo.completed
+    }));
+
+    renderTodos();
+    localStorage.setItem('todos', JSON.stringify(todos));
+}
+
+// edit todo
+
+const editTodo = (itemId) => {
+    todoInput.value = todos[itemId].description;
+    editTodoId = itemId
+}
+
+// delete todo
+
+const deleteTodo = (itemId) => {
+    todos = todos.filter((todo, index) => index !== itemId);
+    editTodoId = -1;
+
+    // re render
+    renderTodos();
+    localStorage.setItem('todos', JSON.stringify(todos))
+}

@@ -16,13 +16,18 @@ body {
 }
 
 .title,
-.form-input {
+.form-input,
+center {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: #fff;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   padding: 0 10px;
+}
+
+center {
+  justify-content: center;
 }
 
 input {
@@ -46,6 +51,12 @@ input {
   background: #fff;
   border-top: 1px solid rgba(0, 0, 0, 0.2);
   padding: 0 10px;
+}
+
+.item > p:hover,
+.item > i,
+.title > i {
+  cursor: pointer;
 }
 
 .clear {
