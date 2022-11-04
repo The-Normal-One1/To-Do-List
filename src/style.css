@@ -56,7 +56,9 @@ input {
 
 .item > p:hover,
 .item > i,
-.title > i {
+.title > i,
+.clear:hover,
+.btn:hover {
   cursor: pointer;
 }
 
