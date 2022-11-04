@@ -1,59 +1,39 @@
 // import _ from 'lodash';
-
+import form, { doList } from './modules/do.js';
+import Tasks from './modules/tasks.js';
 // eslint-disable-line
-
 import './style.css';
 
-const dolist = [
-  {
-    index: 0,
-    description: 'Doing some exercise',
-    completed: true,
-  },
-  {
-    index: 1,
-    description: 'Meeting with family',
-    completed: true,
-  },
-  {
-    index: 2,
-    description: 'Watching football games',
-    completed: true,
-  },
-  {
-    index: 3,
-    description: 'Study',
-    completed: true,
-  },
-];
+// Form submit
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
 
-const taskInput = document.querySelector('.do-list');
+  // Tasks.saveTodo();
+  localStorage.setItem('todos', JSON.stringify(Tasks.saveTodo()));
+  Tasks.renderTodos();
 
-const lists = () => {
-  const list = dolist.map((items) => `<div class="item">
-        <div class="btn-check">
-        <i class="fa-regular fa-square"></i>
-        </div>
-        <p>${items.description}</p>
-        <div class="task-dots">
-        <i class="fa-solid fa-ellipsis-vertical"></i>
-        <i class="fa-solid fa-trash"></i>
-        </div>
-    </div>`).join('');
+  // console.log(Tasks.saveTodo());
+});
 
-  taskInput.insertAdjacentHTML('afterend', list);
-};
+// first renTasksder
 
-window.document.addEventListener('DOMContentLoaded', lists);
+Tasks.renderTodos();
 
-// function component() {
-//     const element = document.createElement('div');
+// add eventlisner for all the do lists
 
-//     // Lodash, now imported by this script
-//     element.innerHTML = _.join(['Hello', 'Ermiyas'], ' ');
-//     element.classList.add('hello');
+doList.addEventListener('click', (e) => {
+  const { target } = e;
+  const parentEle = target.parentNode;
 
-//     return element;
-// }
+  if (parentEle.className !== 'item') return;
 
-// document.body.appendChild(component());
+  const item = parentEle;
+  const itemId = Number(item.id);
+
+  const { action } = target.dataset;
+
+  if (action === 'check' && Tasks.checkTodo(itemId)) return;
+  if (action === 'edit' && Tasks.editTodo(itemId)) return;
+  // action === 'move' && moveTodo(itemId);
+  if (action === 'delete' && Tasks.deleteTodo(itemId));
+});
