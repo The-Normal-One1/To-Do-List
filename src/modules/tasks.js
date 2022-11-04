@@ -1,9 +1,10 @@
-import renderTodos from '..';
+// import renderTodos from '..';
 import { todoInput } from './do.js';
 
 // Vars
-export let todos = JSON.parse(localStorage.getItem('todos')) || [];
-export let editTodoId = -1;
+let todos = JSON.parse(localStorage.getItem('todos')) || [];
+let editTodoId = -1;
+const doList = document.querySelector('.do-list');
 
 export default class Tasks {
   constructor(indexNum, description, completed) {
@@ -50,7 +51,7 @@ export default class Tasks {
         completed: index === itemId ? !todo.completed : todo.completed,
       }));
 
-      renderTodos();
+      Tasks.renderTodos();
       localStorage.setItem('todos', JSON.stringify(todos));
     };
 
@@ -72,7 +73,29 @@ export default class Tasks {
       });
 
       // re render
-      renderTodos();
+      Tasks.renderTodos();
       localStorage.setItem('todos', JSON.stringify(todos));
+    };
+
+    static renderTodos = () => {
+      if (todos.length === 0) {
+        doList.innerHTML = '<center>Nothing To Do!</center>';
+        return;
+      }
+
+      // clear element before re render
+      doList.innerHTML = '';
+
+      todos.forEach((todo, index) => {
+        doList.innerHTML += `
+                <div class="item" id=${index}>
+                        <i class="fa-regular ${todo.completed ? 'fa-square-check' : 'fa-square'}"
+                        data-action='check'
+                        ></i>
+                        <p data-action='edit'>${todo.description}</p>
+                        <i class="fa-solid fa-trash" data-action='delete'><i class="fa-solid fa-ellipsis-vertical" data-action='move'></i>
+                        </i>
+                </div>`;
+      });
     };
 }
