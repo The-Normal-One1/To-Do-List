@@ -1,4 +1,4 @@
-import { renderTodos } from '..';
+import renderTodos from '..';
 import { todoInput } from './do.js';
 
 // Vars
