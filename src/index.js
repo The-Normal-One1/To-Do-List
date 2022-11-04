@@ -10,7 +10,7 @@ import './style.css';
 
 // render todos
 
-export const renderTodos = () => {
+const renderTodos = () => {
   if (todos.length === 0) {
     doList.innerHTML = '<center>Nothing To Do!</center>';
     return;
@@ -31,6 +31,8 @@ export const renderTodos = () => {
           </div>`;
   });
 };
+
+export default renderTodos;
 
 // Form submit
 form.addEventListener('submit', (e) => {
