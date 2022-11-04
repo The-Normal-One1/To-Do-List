@@ -1,18 +1,21 @@
 // import _ from 'lodash';
 
+import { forEach } from 'lodash';
 import form, { todoInput, doList } from './modules/do.js';
+// import SaveTodo from './modules/savetodo.js';
+import Tasks from './modules/tasks.js';
 
 // eslint-disable-line
 
 import './style.css';
 
 // Vars
-let todos = JSON.parse(localStorage.getItem('todos')) || [];
-let editTodoId = -1;
+export let todos = JSON.parse(localStorage.getItem('todos')) || [];
+export let editTodoId = -1;
 
 // render todos
 
-const renderTodos = () => {
+export const renderTodos = () => {
   if (todos.length === 0) {
     doList.innerHTML = '<center>Nothing To Do!</center>';
     return;
@@ -28,54 +31,23 @@ const renderTodos = () => {
                   data-action='check'
                   ></i>
                   <p data-action='edit'>${todo.description}</p>
-                  <i class="fa-solid fa-trash" data-action='delete'>                <i class="fa-solid fa-ellipsis-vertical" data-action='move'></i>
+                  <i class="fa-solid fa-trash" data-action='delete'><i class="fa-solid fa-ellipsis-vertical" data-action='move'></i>
                   </i>
           </div>`;
   });
 };
 
-// Save todo
-
-const saveTodo = () => {
-  const todoValue = todoInput.value;
-
-  // check if the todolist is empty
-  const isEmpty = todoValue === '';
-
-  if (isEmpty) {
-    alert('To do list is empty');
-  } else if (todos.some((todo) => todo.description.toUpperCase() === todoValue.toUpperCase())) {
-    alert('Todo already exists!');
-  } else {
-    if (editTodoId >= 0) {
-      // update the edit todo
-      todos = todos.map((todo, index) => ({
-        ...todo,
-        description: index === editTodoId ? todoValue : todo.description,
-      }));
-
-      editTodoId = -1;
-    } else {
-      todos.push({
-        indexNum: `@${Math.floor(Math.random() * todos.length)}`,
-        description: todoValue,
-        completed: false,
-      });
-    }
-    todoInput.value = '';
-  }
-};
 
 // Form submit
 form.addEventListener('submit', (e) => {
   e.preventDefault();
 
-  saveTodo();
+  Tasks.saveTodo();
   renderTodos();
   localStorage.setItem('todos', JSON.stringify(todos));
 });
 
-// first render
+// first renTasksder
 
 renderTodos();
 
@@ -91,22 +63,28 @@ const checkTodo = (itemId) => {
   localStorage.setItem('todos', JSON.stringify(todos));
 };
 
-// edit todo
+// // edit todo
 
 const editTodo = (itemId) => {
   todoInput.value = todos[itemId].description;
   editTodoId = itemId;
 };
 
-// delete todo
+// // delete todo
 
 const deleteTodo = (itemId) => {
   todos = todos.filter((todo, index) => index !== itemId);
   editTodoId = -1;
 
+  todos.forEach( (todo, index) => {
+    todo.indexNum = index;
+  })
+
   // re render
   renderTodos();
   localStorage.setItem('todos', JSON.stringify(todos));
+
+  console.log(itemId);
 };
 
 // add eventlisner for all the do lists
