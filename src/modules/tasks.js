@@ -17,13 +17,7 @@ export default class Tasks {
       const todoValue = todoInput.value;
 
       // check if the todolist is empty
-      const isEmpty = todoValue === '';
-
-      if (isEmpty) {
-        alert('To do list is empty');
-      } else if (todos.some((todo) => todo.description.toUpperCase() === todoValue.toUpperCase())) {
-        alert('Todo already exists!');
-      } else {
+    //   const isEmpty = todoValue === '';
         if (editTodoId >= 0) {
           // update the edit todo
           todos = todos.map((todo, index) => ({
@@ -33,14 +27,15 @@ export default class Tasks {
 
           editTodoId = -1;
         } else {
-          todos.push({
-            indexNum: todos.length,
+            todos.push({
+            indexNum: todos.length + 1,
             description: todoValue,
             completed: false,
           });
         }
         todoInput.value = '';
-      }
+
+      return todos;
     };
 
     // // check for todo
@@ -69,7 +64,7 @@ export default class Tasks {
       editTodoId = -1;
 
       todos.forEach((todo, index) => {
-        todo.indexNum = index;
+        todo.indexNum = index + 1;
       });
 
       // re render

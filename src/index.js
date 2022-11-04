@@ -10,9 +10,11 @@ const todos = JSON.parse(localStorage.getItem('todos')) || [];
 form.addEventListener('submit', (e) => {
   e.preventDefault();
 
-  Tasks.saveTodo();
+  // Tasks.saveTodo();
+  localStorage.setItem('todos', JSON.stringify(Tasks.saveTodo()));
   Tasks.renderTodos();
-  localStorage.setItem('todos', JSON.stringify(todos));
+
+  // console.log(Tasks.saveTodo());
 });
 
 // first renTasksder
