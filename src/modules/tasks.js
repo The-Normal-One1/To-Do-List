@@ -1,5 +1,10 @@
-import { todos,editTodoId,renderTodos } from "..";
+import { renderTodos } from "..";
 import form, { todoInput, doList } from './do.js';
+
+// Vars
+export let todos = JSON.parse(localStorage.getItem('todos')) || [];
+export let editTodoId = -1;
+
 
 export default class Tasks {
     constructor(indexNum, description, completed) {
@@ -37,4 +42,39 @@ export default class Tasks {
         todoInput.value = '';
         }
     };
+
+    // // check for todo
+
+    static checkTodo = (itemId) => {
+        todos = todos.map((todo, index) => ({
+        ...todo,
+        completed: index === itemId ? !todo.completed : todo.completed,
+        }));
+
+        renderTodos();
+        localStorage.setItem('todos', JSON.stringify(todos));
+    };
+
+    // //  // edit todo
+
+    static editTodo = (itemId) => {
+        todoInput.value = todos[itemId].description;
+        editTodoId = itemId;
+    };
+
+    // // // delete todo
+
+    static deleteTodo = (itemId) => {
+        todos = todos.filter((todo, index) => index !== itemId);
+        editTodoId = -1;
+
+        todos.forEach( (todo, index) => {
+        todo.indexNum = index;
+        })
+
+        // re render
+        renderTodos();
+        localStorage.setItem('todos', JSON.stringify(todos));
+    };
+
 }
