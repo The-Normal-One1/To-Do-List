@@ -54,14 +54,6 @@ input {
   padding: 0 10px;
 }
 
-.item > p:hover,
-.item > i,
-.title > i,
-.clear:hover,
-.btn:hover {
-  cursor: pointer;
-}
-
 .clear {
   opacity: 0.5;
   background-color: transparent;
@@ -69,4 +61,12 @@ input {
   height: 60px;
   font-size: 25px;
   border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.item > p:hover,
+.item > i,
+.title > i,
+.clear:hover,
+.btn:hover {
+  cursor: pointer;
 }
