@@ -37,3 +37,16 @@ doList.addEventListener('click', (e) => {
   // action === 'move' && moveTodo(itemId);
   if (action === 'delete' && Tasks.deleteTodo(itemId));
 });
+
+// Clear all
+
+const clear = document.querySelector('.clear');
+clear.addEventListener('click', () => {
+  const list = JSON.parse(localStorage.getItem('todos'));
+  const todoArr = list.filter((todo) => todo.completed === false);
+  todoArr.forEach((todo) => {
+    todo.indexNum = 1 + todoArr.indexOf(todo);
+  });
+  localStorage.setItem('todos', JSON.stringify(todoArr));
+  window.location.reload();
+});
