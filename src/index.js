@@ -4,8 +4,6 @@ import Tasks from './modules/tasks.js';
 // eslint-disable-line
 import './style.css';
 
-const todos = JSON.parse(localStorage.getItem('todos')) || [];
-
 // Form submit
 form.addEventListener('submit', (e) => {
   e.preventDefault();

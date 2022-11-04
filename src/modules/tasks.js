@@ -17,23 +17,23 @@ export default class Tasks {
       const todoValue = todoInput.value;
 
       // check if the todolist is empty
-    //   const isEmpty = todoValue === '';
-        if (editTodoId >= 0) {
-          // update the edit todo
-          todos = todos.map((todo, index) => ({
-            ...todo,
-            description: index === editTodoId ? todoValue : todo.description,
-          }));
+      //   const isEmpty = todoValue === '';
+      if (editTodoId >= 0) {
+        // update the edit todo
+        todos = todos.map((todo, index) => ({
+          ...todo,
+          description: index === editTodoId ? todoValue : todo.description,
+        }));
 
-          editTodoId = -1;
-        } else {
-            todos.push({
-            indexNum: todos.length + 1,
-            description: todoValue,
-            completed: false,
-          });
-        }
-        todoInput.value = '';
+        editTodoId = -1;
+      } else {
+        todos.push({
+          indexNum: todos.length + 1,
+          description: todoValue,
+          completed: false,
+        });
+      }
+      todoInput.value = '';
 
       return todos;
     };
