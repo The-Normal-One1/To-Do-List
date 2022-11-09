@@ -13,6 +13,10 @@ export default class Tasks {
     this.completed = completed;
   }
 
+  static del = (n) => {
+    return n;
+  }
+
     static saveTodo = () => {
       const todoValue = todoInput.value;
 
