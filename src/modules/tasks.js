@@ -13,13 +13,7 @@ export default class Tasks {
     this.description = description;
     this.completed = completed;
   }
-
-  // static del = (n) => {
-  //   return n;
-  // }
-
     static saveTodo = (todoValue = todoInput.value, editTodoId) => {
-      // const todoValue = todoInput.value;
 
       // check if the todolist is empty
       //   const isEmpty = todoValue === '';
