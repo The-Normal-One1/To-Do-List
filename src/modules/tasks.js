@@ -1,8 +1,9 @@
 // import renderTodos from '..';
+// eslint-disable-line
 import { todoInput } from './do.js';
 
 // Vars
-let todos = JSON.parse(localStorage.getItem('todos')) || [];
+export let todos = JSON.parse(localStorage.getItem('todos')) || [];
 let editTodoId = -1;
 const doList = document.querySelector('.do-list');
 
@@ -12,9 +13,7 @@ export default class Tasks {
     this.description = description;
     this.completed = completed;
   }
-
-    static saveTodo = () => {
-      const todoValue = todoInput.value;
+    static saveTodo = (todoValue = todoInput.value, editTodoId) => {
 
       // check if the todolist is empty
       //   const isEmpty = todoValue === '';
@@ -33,7 +32,7 @@ export default class Tasks {
           completed: false,
         });
       }
-      todoInput.value = '';
+      // todoInput.value = '';
 
       return todos;
     };
@@ -79,18 +78,18 @@ export default class Tasks {
       }
 
       // clear element before re render
-      doList.innerHTML = '';
+      // doList.innerHTML = '';
 
-      todos.forEach((todo, index) => {
-        doList.innerHTML += `
-                <div class="item" id=${index}>
-                        <i class="fa-regular ${todo.completed ? 'fa-square-check' : 'fa-square'}"
-                        data-action='check'
-                        ></i>
-                        <p data-action='edit'>${todo.description}</p>
-                        <i class="fa-solid fa-trash" data-action='delete'><i class="fa-solid fa-ellipsis-vertical" data-action='move'></i>
-                        </i>
-                </div>`;
-      });
+      // todos.forEach((todo, index) => {
+      //   doList.innerHTML += `
+      //           <div class="item" id=${index}>
+      //                   <i class="fa-regular ${todo.completed ? 'fa-square-check' : 'fa-square'}"
+      //                   data-action='check'
+      //                   ></i>
+      //                   <p data-action='edit'>${todo.description}</p>
+      //                   <i class="fa-solid fa-trash" data-action='delete'><i class="fa-solid fa-ellipsis-vertical" data-action='move'></i>
+      //                   </i>
+      //           </div>`;
+      // });
     };
 }
