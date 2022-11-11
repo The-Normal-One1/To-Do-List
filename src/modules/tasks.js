@@ -2,7 +2,7 @@
 import { todoInput } from './do.js';
 
 // Vars
-let todos = JSON.parse(localStorage.getItem('todos')) || [];
+export let todos = JSON.parse(localStorage.getItem('todos')) || [];
 let editTodoId = -1;
 const doList = document.querySelector('.do-list');
 
@@ -13,12 +13,12 @@ export default class Tasks {
     this.completed = completed;
   }
 
-  static del = (n) => {
-    return n;
-  }
+  // static del = (n) => {
+  //   return n;
+  // }
 
-    static saveTodo = () => {
-      const todoValue = todoInput.value;
+    static saveTodo = (todoValue = todoInput.value, editTodoId) => {
+      // const todoValue = todoInput.value;
 
       // check if the todolist is empty
       //   const isEmpty = todoValue === '';
@@ -37,7 +37,7 @@ export default class Tasks {
           completed: false,
         });
       }
-      todoInput.value = '';
+      // todoInput.value = '';
 
       return todos;
     };

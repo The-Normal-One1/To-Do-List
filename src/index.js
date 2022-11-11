@@ -11,8 +11,6 @@ form.addEventListener('submit', (e) => {
   // Tasks.saveTodo();
   localStorage.setItem('todos', JSON.stringify(Tasks.saveTodo()));
   Tasks.renderTodos();
-
-  // console.log(Tasks.saveTodo());
 });
 
 // first renTasksder

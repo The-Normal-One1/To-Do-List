@@ -1,8 +1,26 @@
 // const addition = require('./calcul.js')
-import Tasks from './tasks.js';
+import Tasks, {todos} from './tasks.js';
 
-describe('The value', () => {
+describe('Check adding todos', () => {
+    test('Add todos functionality', ()=>{
+        Tasks.saveTodo('To read about JavaScript')
+        expect(todos).toHaveLength(1)
+        })
     test('addition test', ()=>{
-        expect(Tasks.del(5)).toBe(1)
+        Tasks.saveTodo('Meeting with friends')
+        expect(todos).toHaveLength(2)
+        })
+    test('Checking added todos', ()=>{
+        Tasks.saveTodo('Playing football')
+        expect(todos[2].description).toBe('Playing football')
         })
   });
+
+// beforeAll(() => {
+//     document.body.innerHTML =
+//       "<div>" +
+//       '  <input id="addTask" type="text" placeholder="Add a task ..."/>' +
+//       "  <ul> </ul>" +
+//       '  <div><span id="count">0</span> tasks left to do</div>' +
+//       "</div>";
+//     });
