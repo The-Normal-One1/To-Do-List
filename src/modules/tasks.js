@@ -78,18 +78,18 @@ export default class Tasks {
       }
 
       // clear element before re render
-      // doList.innerHTML = '';
+    //   doList.innerHTML = '';
 
-      // todos.forEach((todo, index) => {
-      //   doList.innerHTML += `
-      //           <div class="item" id=${index}>
-      //                   <i class="fa-regular ${todo.completed ? 'fa-square-check' : 'fa-square'}"
-      //                   data-action='check'
-      //                   ></i>
-      //                   <p data-action='edit'>${todo.description}</p>
-      //                   <i class="fa-solid fa-trash" data-action='delete'><i class="fa-solid fa-ellipsis-vertical" data-action='move'></i>
-      //                   </i>
-      //           </div>`;
-      // });
+    //   todos.forEach((todo, index) => {
+    //     doList.innerHTML += `
+    //             <div class="item" id=${index}>
+    //                     <i class="fa-regular ${todo.completed ? 'fa-square-check' : 'fa-square'}"
+    //                     data-action='check'
+    //                     ></i>
+    //                     <p data-action='edit'>${todo.description}</p>
+    //                     <i class="fa-solid fa-trash" data-action='delete'><i class="fa-solid fa-ellipsis-vertical" data-action='move'></i>
+    //                     </i>
+    //             </div>`;
+    //   });
     };
 }

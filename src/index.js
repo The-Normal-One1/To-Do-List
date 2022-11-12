@@ -1,6 +1,7 @@
 // import _ from 'lodash';
 import form, { doList } from './modules/do.js';
-import Tasks from './modules/tasks.js';
+import Tasks, { todos } from './modules/tasks.js';
+import clearAll from './modules/clear.js';
 // eslint-disable-line
 import './style.css';
 
@@ -36,15 +37,9 @@ doList.addEventListener('click', (e) => {
   if (action === 'delete' && Tasks.deleteTodo(itemId));
 });
 
-// Clear all
-
 const clear = document.querySelector('.clear');
 clear.addEventListener('click', () => {
   const list = JSON.parse(localStorage.getItem('todos'));
-  const todoArr = list.filter((todo) => todo.completed === false);
-  todoArr.forEach((todo) => {
-    todo.indexNum = 1 + todoArr.indexOf(todo);
-  });
-  localStorage.setItem('todos', JSON.stringify(todoArr));
+  localStorage.setItem('todos', JSON.stringify(clearAll(list)));
   window.location.reload();
 });
