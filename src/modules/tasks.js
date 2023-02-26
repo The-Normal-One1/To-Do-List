@@ -31,7 +31,7 @@ export default class Tasks {
         completed: false,
       });
     }
-    // todoInput.value = '';
+    todoInput.value = '';
 
     return todos;
   };
