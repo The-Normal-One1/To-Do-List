@@ -18,8 +18,11 @@
   "bugs": {
     "url": "https://github.com/The-Normal-One1/To-Do-List/issues"
   },
-  "eslintIgnore": ["tasks.js", "index.js"],
-  "homepage": "https://github.com/The-Normal-One1/To-Do-List#readme",
+  "eslintIgnore": [
+    "tasks.js",
+    "index.js"
+  ],
+  "homepage": "https://github.com/The-Normal-One1/To-Do-List/dist/",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "css-loader": "^6.7.1",
