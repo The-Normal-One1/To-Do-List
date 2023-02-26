@@ -11,7 +11,7 @@
 
 ## Live Demo
 
-Please: [Here](https://the-normal-one1.github.io/To-Do-List/)
+Please: [Here](https://the-normal-one1.github.io/To-Do-List/dist/)
 
 ## Getting Started
 
