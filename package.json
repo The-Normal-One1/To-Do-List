@@ -4,7 +4,7 @@
   "description": "![](https://img.shields.io/badge/Microverse-blueviolet)",
   "private": true,
   "scripts": {
-    "deploy": "gh-pages -d dist",
+    "deploy": "deploy -d dist",
     "start": "webpack serve --open",
     "build": "webpack"
   },
