@@ -4,7 +4,7 @@
   "description": "![](https://img.shields.io/badge/Microverse-blueviolet)",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "gh-pages -d dist",
     "start": "webpack serve --open",
     "build": "webpack"
   },
@@ -18,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/The-Normal-One1/To-Do-List/issues"
   },
-  "homepage": "https://github.com/The-Normal-One1/To-Do-List#readme",
+  "homepage": "https://github.com/The-Normal-One1/To-Do-List",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "css-loader": "^6.7.1",
@@ -222,6 +222,7 @@
     "get-stream": "^5.2.0",
     "get-symbol-description": "^1.0.0",
     "get-uri": "^3.0.2",
+    "gh-pages": "^5.0.0",
     "glob": "^8.0.3",
     "glob-parent": "^5.1.2",
     "global-dirs": "^3.0.0",
