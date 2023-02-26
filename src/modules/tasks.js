@@ -13,83 +13,84 @@ export default class Tasks {
     this.description = description;
     this.completed = completed;
   }
-    static saveTodo = (todoValue = todoInput.value, editTodoId) => {
-
-      // check if the todolist is empty
-      //   const isEmpty = todoValue === '';
-      if (editTodoId >= 0) {
-        // update the edit todo
-        todos = todos.map((todo, index) => ({
-          ...todo,
-          description: index === editTodoId ? todoValue : todo.description,
-        }));
-
-        editTodoId = -1;
-      } else {
-        todos.push({
-          indexNum: todos.length + 1,
-          description: todoValue,
-          completed: false,
-        });
-      }
-      // todoInput.value = '';
-
-      return todos;
-    };
-
-    // // check for todo
-
-    static checkTodo = (itemId) => {
+  static saveTodo = (todoValue = todoInput.value, editTodoId) => {
+    // check if the todolist is empty
+    //   const isEmpty = todoValue === '';
+    if (editTodoId >= 0) {
+      // update the edit todo
       todos = todos.map((todo, index) => ({
         ...todo,
-        completed: index === itemId ? !todo.completed : todo.completed,
+        description: index === editTodoId ? todoValue : todo.description,
       }));
 
-      Tasks.renderTodos();
-      localStorage.setItem('todos', JSON.stringify(todos));
-    };
-
-    // //  // edit todo
-
-    static editTodo = (itemId) => {
-      todoInput.value = todos[itemId].description;
-      editTodoId = itemId;
-    };
-
-    // // // delete todo
-
-    static deleteTodo = (itemId) => {
-      todos = todos.filter((todo, index) => index !== itemId);
       editTodoId = -1;
-
-      todos.forEach((todo, index) => {
-        todo.indexNum = index + 1;
+    } else {
+      todos.push({
+        indexNum: todos.length + 1,
+        description: todoValue,
+        completed: false,
       });
+    }
+    // todoInput.value = '';
 
-      // re render
-      Tasks.renderTodos();
-      localStorage.setItem('todos', JSON.stringify(todos));
-    };
+    return todos;
+  };
 
-    static renderTodos = () => {
-      if (todos.length === 0) {
-        doList.innerHTML = '<center>Nothing To Do!</center>';
-        return;
-      }
+  // // check for todo
 
-      // clear element before re render
-    //   doList.innerHTML = '';
+  static checkTodo = (itemId) => {
+    todos = todos.map((todo, index) => ({
+      ...todo,
+      completed: index === itemId ? !todo.completed : todo.completed,
+    }));
 
-    //   todos.forEach((todo, index) => {
-    //     doList.innerHTML += `
-    //             <div class="item" id=${index}>
-    //                     <i class="fa-regular ${todo.completed ? 'fa-square-check' : 'fa-square'}"
-    //                     data-action='check'
-    //                     ></i>
-    //                     <p data-action='edit'>${todo.description}</p>
-    //                     <i class="fa-solid fa-trash" data-action='delete'><i class="fa-solid fa-ellipsis-vertical" data-action='move'></i>
-    //                     </i>
-    //             </div>`;
-    //   });
-    };
+    Tasks.renderTodos();
+    localStorage.setItem('todos', JSON.stringify(todos));
+  };
+
+  // //  // edit todo
+
+  static editTodo = (itemId) => {
+    todoInput.value = todos[itemId].description;
+    editTodoId = itemId;
+  };
+
+  // // // delete todo
+
+  static deleteTodo = (itemId) => {
+    todos = todos.filter((todo, index) => index !== itemId);
+    editTodoId = -1;
+
+    todos.forEach((todo, index) => {
+      todo.indexNum = index + 1;
+    });
+
+    // re render
+    Tasks.renderTodos();
+    localStorage.setItem('todos', JSON.stringify(todos));
+  };
+
+  static renderTodos = () => {
+    if (todos.length === 0) {
+      doList.innerHTML = '<center>Nothing To Do!</center>';
+      return;
+    }
+
+    // clear element before re render
+    doList.innerHTML = '';
+
+    todos.forEach((todo, index) => {
+      doList.innerHTML += `
+                <div class="item" id=${index}>
+                        <i class="fa-regular ${
+                          todo.completed ? 'fa-square-check' : 'fa-square'
+                        }"
+                        data-action='check'
+                        ></i>
+                        <p data-action='edit'>${todo.description}</p>
+                        <i class="fa-solid fa-trash" data-action='delete'><i class="fa-solid fa-ellipsis-vertical" data-action='move'></i>
+                        </i>
+                </div>`;
+    });
+  };
 }

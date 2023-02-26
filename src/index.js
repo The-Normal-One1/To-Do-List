@@ -1,7 +1,6 @@
 // import _ from 'lodash';
 import form, { doList } from './modules/do.js';
-import Tasks, { todos } from './modules/tasks.js';
-import clearAll from './modules/clear.js';
+import Tasks from './modules/tasks.js';
 // eslint-disable-line
 import './style.css';
 
@@ -12,6 +11,8 @@ form.addEventListener('submit', (e) => {
   // Tasks.saveTodo();
   localStorage.setItem('todos', JSON.stringify(Tasks.saveTodo()));
   Tasks.renderTodos();
+
+  // console.log(Tasks.saveTodo());
 });
 
 // first renTasksder
@@ -37,9 +38,15 @@ doList.addEventListener('click', (e) => {
   if (action === 'delete' && Tasks.deleteTodo(itemId));
 });
 
+// Clear all
+
 const clear = document.querySelector('.clear');
 clear.addEventListener('click', () => {
   const list = JSON.parse(localStorage.getItem('todos'));
-  localStorage.setItem('todos', JSON.stringify(clearAll(list)));
+  const todoArr = list.filter((todo) => todo.completed === false);
+  todoArr.forEach((todo) => {
+    todo.indexNum = 1 + todoArr.indexOf(todo);
+  });
+  localStorage.setItem('todos', JSON.stringify(todoArr));
   window.location.reload();
 });
