@@ -1,6 +1,6 @@
 # To-Do-List
 
-> This is To-Do-List. Please be my guest to read all my work.
+> ToDo-list is a project where you can list your daily tasks, erase them when you finish it.
 
 ## Built With
 
