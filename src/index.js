@@ -1,4 +1,3 @@
-// import _ from 'lodash';
 import form, { doList } from './modules/do.js';
 import Tasks from './modules/tasks.js';
 // eslint-disable-line
@@ -11,8 +10,6 @@ form.addEventListener('submit', (e) => {
   // Tasks.saveTodo();
   localStorage.setItem('todos', JSON.stringify(Tasks.saveTodo()));
   Tasks.renderTodos();
-
-  // console.log(Tasks.saveTodo());
 });
 
 // first renTasksder
@@ -34,7 +31,6 @@ doList.addEventListener('click', (e) => {
 
   if (action === 'check' && Tasks.checkTodo(itemId)) return;
   if (action === 'edit' && Tasks.editTodo(itemId)) return;
-  // action === 'move' && moveTodo(itemId);
   if (action === 'delete' && Tasks.deleteTodo(itemId));
 });
 
