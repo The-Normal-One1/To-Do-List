@@ -15,8 +15,7 @@ export default class Tasks {
 
   static saveTodo = () => {
     const todoValue = todoInput.value;
-    // check if the todolist is empty
-    const isEmpty = todoValue === '';
+
     if (editTodoId >= 0) {
       // update the edit todo
       todos = todos.map((todo, index) => ({
