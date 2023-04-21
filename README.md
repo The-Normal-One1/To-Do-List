@@ -28,7 +28,7 @@ The basic requirements for building the executable are:
 ```
 git clone https://github.com/The-Normal-One1/To-Do-List
 
-cd To-Do-list-Application
+cd To-Do-list
 
 
 ### Install
