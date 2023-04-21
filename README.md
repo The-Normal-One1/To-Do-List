@@ -1,3 +1,4 @@
+![](https://img.shields.io/badge/Microverse-blueviolet)
 # To-Do-List
 
 > ToDo-list is a project where you can list your daily tasks, erase them when you finish it.
