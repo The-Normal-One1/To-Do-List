@@ -1,4 +1,3 @@
-// import renderTodos from '..';
 // eslint-disable-line
 import { todoInput } from './do.js';
 
@@ -15,7 +14,7 @@ export default class Tasks {
   }
   static saveTodo = (todoValue = todoInput.value, editTodoId) => {
     // check if the todolist is empty
-    //   const isEmpty = todoValue === '';
+    const isEmpty = todoValue === '';
     if (editTodoId >= 0) {
       // update the edit todo
       todos = todos.map((todo, index) => ({
@@ -31,12 +30,12 @@ export default class Tasks {
         completed: false,
       });
     }
-    // todoInput.value = '';
+    todoInput.value = '';
 
     return todos;
   };
 
-  // // check for todo
+  // check for todo
 
   static checkTodo = (itemId) => {
     todos = todos.map((todo, index) => ({
@@ -48,14 +47,14 @@ export default class Tasks {
     localStorage.setItem('todos', JSON.stringify(todos));
   };
 
-  // //  // edit todo
+  // edit todo
 
   static editTodo = (itemId) => {
     todoInput.value = todos[itemId].description;
     editTodoId = itemId;
   };
 
-  // // // delete todo
+  // delete todo
 
   static deleteTodo = (itemId) => {
     todos = todos.filter((todo, index) => index !== itemId);
@@ -72,7 +71,7 @@ export default class Tasks {
 
   static renderTodos = () => {
     if (todos.length === 0) {
-      doList.innerHTML = '<center>Nothing To Do!</center>';
+      doList.innerHTML = '<center class= "nothing">Nothing To Do!</center>';
       return;
     }
 
