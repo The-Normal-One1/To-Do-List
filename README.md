@@ -24,16 +24,20 @@ The basic requirements for building the executable are:
 
 ## Getting Started
 
-#### Cloning the project
+### Setup
 ```
 git clone https://github.com/The-Normal-One1/To-Do-List
 
 cd To-Do-list-Application
 
+
+### Install
+
 npm install
 
 npm run start
 ```
+### Usage
 
 ## Getting packages and debuging with Stylelint
 ```
@@ -64,7 +68,7 @@ npm install --save-dev hint@6.x
 ```
 npx hint .
 ```
-## Unit Testing
+### Run tests
 
 You can find each unit test cases in the Test folder located in the parent source directory of the project. you can create your own custom unit test and test it by running
 
@@ -72,6 +76,10 @@ You can find each unit test cases in the Test folder located in the parent sourc
 npx run test
 ```
 This should run all unit test found in the application.test.js from the Test folder.
+
+### Deployment
+
+This website is delpoyed by ```Render``` 
 
 ## Authors
 
