@@ -27,14 +27,6 @@ center {
   padding: 0 10px;
 }
 
-.form-input > input {
-  padding: 0 10px;
-}
-
-center {
-  justify-content: center;
-}
-
 input {
   font-style: italic;
   height: 60px;
@@ -42,6 +34,11 @@ input {
   width: 90%;
   font-size: 25px;
   margin-right: 5px;
+  padding: 0 10px;
+}
+
+center {
+  justify-content: center;
 }
 
 .btn {
