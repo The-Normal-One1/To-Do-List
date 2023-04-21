@@ -12,9 +12,10 @@ export default class Tasks {
     this.description = description;
     this.completed = completed;
   }
-  static saveTodo = (todoValue = todoInput.value, editTodoId) => {
-    // check if the todolist is empty
-    const isEmpty = todoValue === '';
+
+  static saveTodo = () => {
+    const todoValue = todoInput.value;
+
     if (editTodoId >= 0) {
       // update the edit todo
       todos = todos.map((todo, index) => ({
