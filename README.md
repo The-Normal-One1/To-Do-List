@@ -13,13 +13,64 @@
 
 Please: [Click here](https://to-doo-list.onrender.com)
 
+# Prerequisites
+
+The basic requirements for building the executable are:
+
+- A working browser application (Google chrome, Mozilla Fire fox, Microsoft edge ...)
+- VSCode or any other equivalent code editor
+- Node Package Manager (For installing packages like Lighthous, webhint & stylelint used for checking for debugging bad codes before deployment)
+
 ## Getting Started
 
-To get a local copy up and run git clone https://github.com/The-Normal-One1/To-Do-list and follow these steps.
+#### Cloning the project
+```
+git clone https://github.com/The-Normal-One1/To-Do-List
 
-### Open file in the VS code
+cd To-Do-list-Application
 
-### Run the index.html file on any browser
+npm install
+
+npm run start
+```
+
+## Getting packages and debuging with Stylelint
+```
+npm install --save-dev stylelint@13.x stylelint-scss@3.x stylelint-config-standard@21.x stylelint-csstree-validator@1.x
+```
+##### For validation detection using Stylelint Run
+```
+npx stylelint "**/*.{css,scss}"
+```
+##### from parent source directory
+
+## Getting packages and debuging with ESlint
+```
+npm install npm install --save-dev eslint@7.x eslint-config-airbnb-base@14.x eslint-plugin-import@2.x babel-eslint@10.x
+```
+##### For validation detection using Stylelint Run
+```
+npx eslint .
+```
+##### from parent source directory
+
+## Getting packages and debuging with Webhint
+```
+npm init -y
+npm install --save-dev hint@6.x
+```
+##### For validation detection using Webhint Run
+```
+npx hint .
+```
+## Unit Testing
+
+You can find each unit test cases in the Test folder located in the parent source directory of the project. you can create your own custom unit test and test it by running
+
+```
+npx run test
+```
+This should run all unit test found in the application.test.js from the Test folder.
 
 ## Authors
 
