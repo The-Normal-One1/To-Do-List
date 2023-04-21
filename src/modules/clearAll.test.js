@@ -23,7 +23,6 @@ describe('Check adding todos', () => {
   test('Add todos functionality', () => {
     Tasks.saveTodo('Playing Golf');
     Tasks.saveTodo('Gaming', 1);
-    // console.log(todos)
     expect(todos[1].description).toBe('Gaming');
   });
 });
