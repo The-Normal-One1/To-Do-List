@@ -22,6 +22,16 @@ The basic requirements for building the executable are:
 - VSCode or any other equivalent code editor
 - Node Package Manager (For installing packages like Lighthous, webhint & stylelint used for checking for debugging bad codes before deployment)
 
+# Features implemented:
+
+- Responsive HTML page
+- Integrated webpack
+- dynamic to-do list dom manipulation
+- Add a task to list [Hit enter key to add a new task]
+- Edit a task to list [this is done by clicking the added task one time and hit enter key to save to list]
+- Save current state to local-storage.
+- Addition of unit test using Jest.
+
 ## Getting Started
 
 ### Setup
