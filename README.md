@@ -99,6 +99,12 @@ This website is delpoyed by ```Render```
 - Twitter: [@DemsewErmiyas](https://twitter.com/DemsewErmiyas)
 - LinkedIn: [Ermiyas Demsew](https://linkedin.com/in/ErmiyasDemsew)
 
+👤 **Aster Alemu**
+
+- GitHub: [Aster Alemu](https://github.com/aster-alemu)
+- Twitter: [Aster Alemu](https://twitter.com/aster_alemu)
+- LinkedIn: [Aster Alemu](https://www.linkedin.com/in/aster-alemu/)
+
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
