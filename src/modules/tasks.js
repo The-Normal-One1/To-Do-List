@@ -16,20 +16,19 @@ export default class Tasks {
     const todoValue = todoInput.value;
 
     if (editTodoId >= 0) {
-      // update the edit todo
-      todos = todos.map((todo, index) => ({
-        ...todo,
-        description: index === editTodoId ? todoValue : todo.description,
-      }));
-
+      todos = todos.map((todo, index) =>
+        index === editTodoId ? { ...todo, description: todoValue } : todo
+      );
       editTodoId = -1;
     } else {
-      todos.push({
+      const newTodo = {
         indexNum: todos.length + 1,
         description: todoValue,
         completed: false,
-      });
+      };
+      todos.push(newTodo);
     }
+
     todoInput.value = '';
 
     return todos;
@@ -38,10 +37,9 @@ export default class Tasks {
   // check for todo
 
   static checkTodo = (itemId) => {
-    todos = todos.map((todo, index) => ({
-      ...todo,
-      completed: index === itemId ? !todo.completed : todo.completed,
-    }));
+    todos = todos.map((todo, index) =>
+      index === itemId ? { ...todo, completed: !todo.completed } : todo
+    );
 
     Tasks.renderTodos();
     localStorage.setItem('todos', JSON.stringify(todos));
