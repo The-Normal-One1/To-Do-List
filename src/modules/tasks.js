@@ -1,7 +1,17 @@
 import { todoInput } from './do.js';
 
 // Vars
-export let todos = JSON.parse(localStorage.getItem('todos')) || [];
+let todos = [];
+
+try {
+  const storedData = localStorage.getItem('todos');
+  if (storedData) {
+    todos = JSON.parse(storedData);
+  }
+} catch (error) {
+  console.error('Error parsing todos from localStorage:', error);
+}
+
 let editTodoId = -1;
 const doList = document.querySelector('.do-list');
 
@@ -13,7 +23,12 @@ export default class Tasks {
   }
 
   static saveTodo = () => {
-    const todoValue = todoInput.value;
+    const todoValue = todoInput.value.trim();
+
+    if (todoValue === '') {
+      alert('Please enter a todo not empty string !');
+      return;
+    }
 
     if (editTodoId >= 0) {
       todos = todos.map((todo, index) =>
@@ -79,14 +94,17 @@ export default class Tasks {
     todos.forEach((todo, index) => {
       doList.innerHTML += `
                 <div class="item" id=${index}>
-                        <i class="fa-regular ${
+                        <div class="item-desc"><i class="fa-regular ${
                           todo.completed ? 'fa-square-check' : 'fa-square'
                         }"
                         data-action='check'
                         ></i>
                         <p data-action='edit'>${todo.description}</p>
-                        <i class="fa-solid fa-trash" data-action='delete'>
-                        </i>
+                        <i class="fa-solid fa-trash" data-action='delete'></i>
+                        </div>
+                        <div class='item-edit'>
+                        <i class="fa-solid fa-edit" data-action='edit'></i>
+                        </div>
                 </div>`;
     });
   };
