@@ -1,14 +1,19 @@
 body {
-  background-image: url('./images/todobgimage.jpg');
+  background-image: url('./images/bg-todo.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   font-size: 25px;
 }
 
 .all {
   display: flex;
   flex-direction: column;
-  margin: 150px 120px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  box-shadow: 4px 4px rgba(7, 5, 5, 0.2);
+  margin: 150px 200px;
+  border: 8px solid rgba(170, 135, 135, 0.3);
+  border-radius: 10px;
+  box-shadow: 8px 8px rgba(15, 6, 6, 0.8);
 }
 
 .title,
@@ -22,19 +27,27 @@ center {
 }
 
 .title {
-  background: rgb(83, 83, 83);
-  color: #fff;
+  background: rgb(179, 170, 170, 0.3);
+  color: rgb(243, 240, 240, 0.8);
+  font-size: 30px;
   padding: 0 10px;
 }
 
 input {
   font-style: italic;
-  height: 60px;
+  height: 75px;
   border: none;
   width: 90%;
-  font-size: 25px;
+  font-size: 30px;
   margin-right: 5px;
   padding: 0 10px;
+  opacity: 0.9;
+  background-color: rgb(203, 149, 105, 0.3);
+}
+
+input:focus {
+  border: none;
+  outline: none;
 }
 
 center {
@@ -45,8 +58,7 @@ center {
   height: 60px;
   width: 10%;
   border: none;
-  background-color: rgb(101, 155, 117);
-  color: #fff;
+  background-color: rgb(203, 149, 105, 0.5);
 }
 
 .nothing {
@@ -57,34 +69,43 @@ center {
 }
 
 .item {
+  display: grid;
+  grid-template-columns: 95% 5%;
+  align-items: center;
+  font-size: 30px;
+  background-color: rgb(203, 149, 105, 0.5);
+  border-top: 1px solid rgba(173, 156, 156, 0.8);
+}
+
+.item-desc {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #fff;
-  border-top: 1px solid rgba(0, 0, 0, 0.2);
   padding: 0 10px;
-  color: rgb(2, 134, 2);
-  background-color: blanchedalmond;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.item-edit {
+  color: rgb(221, 229, 231);
+  margin-left: 10px;
+  padding-right: 10px;
 }
 
 .fa-trash {
   color: red;
 }
 
-.fa-trash:active {
+.item-edit:active {
   color: rgb(163, 90, 90);
-}
-
-.fa-ellipsis-vertical {
-  color: rgb(61, 61, 61);
 }
 
 .btn:active {
-  color: rgb(163, 90, 90);
+  color: rgb(182, 118, 118, 0.5);
 }
 
 .fa-square-check {
-  color: rgb(134, 2, 2);
+  color: rgb(58, 4, 4);
 }
 
 .clear {
@@ -92,17 +113,19 @@ center {
   background-color: transparent;
   width: 100%;
   height: 60px;
-  font-size: 25px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: 35px;
+  color: rgb(193, 196, 15);
+  border: 1px solid rgba(44, 35, 35, 0.2);
 }
 
 .clear:active {
   opacity: 0.5;
-  background-color: rgb(238, 8, 8);
+  background-color: rgb(150, 110, 110);
 }
 
-.item > p:hover,
-.item > i,
+.item-desc > p:hover,
+.fa-trash:hover,
+.item-edit:hover,
 .title > i,
 .clear:hover,
 .btn:hover {

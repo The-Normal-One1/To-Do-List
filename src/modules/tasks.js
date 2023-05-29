@@ -1,8 +1,17 @@
-// eslint-disable-line
 import { todoInput } from './do.js';
 
 // Vars
-export let todos = JSON.parse(localStorage.getItem('todos')) || [];
+export let todos = [];
+
+try {
+  const storedData = localStorage.getItem('todos');
+  if (storedData) {
+    todos = JSON.parse(storedData);
+  }
+} catch (error) {
+  console.error('Error parsing todos from localStorage:', error);
+}
+
 let editTodoId = -1;
 const doList = document.querySelector('.do-list');
 
@@ -14,23 +23,27 @@ export default class Tasks {
   }
 
   static saveTodo = () => {
-    const todoValue = todoInput.value;
+    const todoValue = todoInput.value.trim();
+
+    if (todoValue === '') {
+      alert('Please enter a todo not empty string !');
+      return;
+    }
 
     if (editTodoId >= 0) {
-      // update the edit todo
-      todos = todos.map((todo, index) => ({
-        ...todo,
-        description: index === editTodoId ? todoValue : todo.description,
-      }));
-
+      todos = todos.map((todo, index) =>
+        index === editTodoId ? { ...todo, description: todoValue } : todo
+      );
       editTodoId = -1;
     } else {
-      todos.push({
+      const newTodo = {
         indexNum: todos.length + 1,
         description: todoValue,
         completed: false,
-      });
+      };
+      todos.push(newTodo);
     }
+
     todoInput.value = '';
 
     return todos;
@@ -39,10 +52,9 @@ export default class Tasks {
   // check for todo
 
   static checkTodo = (itemId) => {
-    todos = todos.map((todo, index) => ({
-      ...todo,
-      completed: index === itemId ? !todo.completed : todo.completed,
-    }));
+    todos = todos.map((todo, index) =>
+      index === itemId ? { ...todo, completed: !todo.completed } : todo
+    );
 
     Tasks.renderTodos();
     localStorage.setItem('todos', JSON.stringify(todos));
@@ -82,14 +94,17 @@ export default class Tasks {
     todos.forEach((todo, index) => {
       doList.innerHTML += `
                 <div class="item" id=${index}>
-                        <i class="fa-regular ${
+                        <div class="item-desc"><i class="fa-regular ${
                           todo.completed ? 'fa-square-check' : 'fa-square'
                         }"
                         data-action='check'
                         ></i>
                         <p data-action='edit'>${todo.description}</p>
-                        <i class="fa-solid fa-trash" data-action='delete'><i class="fa-solid fa-ellipsis-vertical" data-action='move'></i>
-                        </i>
+                        <i class="fa-solid fa-trash" data-action='delete'></i>
+                        </div>
+                        <div class='item-edit'>
+                        <i class="fa-solid fa-edit" data-action='edit'></i>
+                        </div>
                 </div>`;
     });
   };

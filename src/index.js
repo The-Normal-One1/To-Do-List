@@ -1,6 +1,5 @@
 import form, { doList } from './modules/do.js';
 import Tasks from './modules/tasks.js';
-// eslint-disable-line
 import './style.css';
 
 // Form submit
@@ -20,7 +19,7 @@ Tasks.renderTodos();
 
 doList.addEventListener('click', (e) => {
   const { target } = e;
-  const parentEle = target.parentNode;
+  const parentEle = target.parentNode.parentNode;
 
   if (parentEle.className !== 'item') return;
 
