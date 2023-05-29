@@ -1,4 +1,3 @@
-// const addition = require('./calcul.js')
 import Tasks, { todos } from './tasks.js';
 
 describe('Check adding todos', () => {
