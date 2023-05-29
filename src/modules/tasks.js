@@ -1,7 +1,7 @@
 import { todoInput } from './do.js';
 
 // Vars
-let todos = [];
+export let todos = [];
 
 try {
   const storedData = localStorage.getItem('todos');
