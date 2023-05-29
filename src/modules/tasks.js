@@ -1,4 +1,3 @@
-// eslint-disable-line
 import { todoInput } from './do.js';
 
 // Vars
@@ -88,7 +87,7 @@ export default class Tasks {
                         data-action='check'
                         ></i>
                         <p data-action='edit'>${todo.description}</p>
-                        <i class="fa-solid fa-trash" data-action='delete'><i class="fa-solid fa-ellipsis-vertical" data-action='move'></i>
+                        <i class="fa-solid fa-trash" data-action='delete'>
                         </i>
                 </div>`;
     });
